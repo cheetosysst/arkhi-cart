@@ -4,11 +4,12 @@ export default {
 		"./pages/**/*.{js,ts,jsx,tsx}",
 		"./content/**/*.{js,ts,jsx,tsx}",
 		"./renderer/**/*.{js,ts,jsx,tsx}",
+		"./components/**/*.{js,ts,jsx,tsx}",
 	],
 	theme: {
 		extend: {},
 	},
-	plugins: [require("daisyui")],
+	plugins: [require("daisyui"), require("@tailwindcss/typography")],
 	daisyui: {
 		themes: ["bumblebee"],
 	},

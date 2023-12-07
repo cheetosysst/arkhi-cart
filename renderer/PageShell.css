@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.image-full-transparent::before {
+	background-color: transparent !important;
+}

@@ -27,3 +27,17 @@ type PageContextServer = PageContextBuiltInServer<Page> & PageContextCustom;
 type PageContextClient = PageContextBuiltInClient<Page> & PageContextCustom;
 
 type PageContext = PageContextClient | PageContextServer;
+
+// ===== application types =====
+
+type Item = {
+	id: string;
+	title: string;
+	description: string;
+	price: number;
+	count: number;
+	discount: {
+		active: boolean;
+		price: number;
+	};
+};
