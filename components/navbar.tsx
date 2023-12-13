@@ -12,7 +12,9 @@ export const Navbar = () => {
 					</label>
 				</div>
 				<div className="navbar-center">
-					<a className="btn btn-ghost text-2xl">MacHouse</a>
+					<a className="btn btn-ghost text-2xl" href="/">
+						MacHouse
+					</a>
 				</div>
 				<div className="navbar-end">
 					<button className="btn btn-circle btn-ghost">

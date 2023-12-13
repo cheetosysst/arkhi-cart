@@ -9,7 +9,6 @@ import {
 	HeartPulse,
 	Monitor,
 	Moon,
-	Pencil,
 	Plug,
 	Shell,
 	Sun,
@@ -26,7 +25,6 @@ const mockData = [
 	{ title: "Eletronic", icon: <Plug /> },
 	{ title: "Photography", icon: <Camera /> },
 	{ title: "Food", icon: <Beef /> },
-	{ title: "Make Up", icon: <Pencil /> },
 	{ title: "Anime", icon: <Shell /> },
 ];
 
@@ -60,8 +58,8 @@ export default function Layout({ children }: PropsWithChildren) {
 						/>
 						<Sun />
 					</label>
-					{mockData.map((item) => (
-						<li>
+					{mockData.map((item, index) => (
+						<li key={`sidelink${index}`}>
 							<a
 								href="#"
 								className="btn btn-neutral flex justify-start gap-2"

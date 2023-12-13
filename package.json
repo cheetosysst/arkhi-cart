@@ -6,7 +6,8 @@
     "prod": "npm run build && npm run server:prod",
     "build": "vite build",
     "server": "ts-node server.ts",
-    "server:prod": "cross-env NODE_ENV=production ts-node server.ts"
+    "server:prod": "cross-env NODE_ENV=production ts-node server.ts",
+    "generate": "ts-node generate.ts"
   },
   "dependencies": {
     "@faker-js/faker": "^8.3.1",
