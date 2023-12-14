@@ -2,8 +2,8 @@
   "name": "arkhi",
   "description": "Template for the Arkhi framework",
   "scripts": {
-    "dev": "pnpm server",
-    "prod": "pnpm generate && pnpm build && pnpm server:prod",
+    "dev": "npm server",
+    "prod": "npm generate && npm build && npm server:prod",
     "build": "vite build",
     "server": "ts-node server.ts",
     "server:prod": "cross-env NODE_ENV=production ts-node server.ts",
