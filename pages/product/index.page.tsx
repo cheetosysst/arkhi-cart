@@ -19,7 +19,13 @@ function Page({
 			<div className="breadcrumbs mt-4 px-2 text-sm">
 				<ul>
 					<li>
-						<a>{product?.manufacturer ?? "unknown"}</a>
+						<a
+							href={`/manufacturer?name=${encodeURI(
+								product?.manufacturer ?? "",
+							)}`}
+						>
+							{product?.manufacturer ?? "unknown"}
+						</a>
 					</li>
 					<li>
 						<a>{product?.department ?? "unknown"}</a>

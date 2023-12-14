@@ -28,3 +28,8 @@ export const getProduct = (name: string | undefined) => {
 	const item = products.find((item) => item.name === name);
 	return item;
 };
+
+export const getCompanyByName = (name: string) => {
+	if (!name) return undefined;
+	return companies.find((item) => item.name === name);
+};
