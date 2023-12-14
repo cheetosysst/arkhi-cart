@@ -1,6 +1,6 @@
 import { Footer } from "#/components/footer";
 import { Navbar } from "#/components/navbar";
-import type { PropsWithChildren } from "react";
+import { type PropsWithChildren, useState, useEffect } from "react";
 import {
 	Beef,
 	Bike,
@@ -11,9 +11,12 @@ import {
 	Moon,
 	Plug,
 	Shell,
+	ShoppingCart,
 	Sun,
 	User,
 } from "lucide-react";
+import { Island } from "arkhi/client";
+import { getCart } from "#/components/cart";
 
 const mockData = [
 	{ title: "Computer", icon: <Monitor /> },
@@ -34,10 +37,13 @@ export default function Layout({ children }: PropsWithChildren) {
 			<input id="sidedrawer" type="checkbox" className="drawer-toggle" />
 			<div className="drawer-content">
 				<Navbar />
-				<div className="mx-auto min-h-[90dvh] max-w-5xl">
+				<div className="mx-auto min-h-[70dvh] max-w-5xl">
 					{children}
 				</div>
 				<Footer />
+				<div>
+					<CartIsland />
+				</div>
 			</div>
 			<div className="drawer-side">
 				<label
@@ -74,3 +80,39 @@ export default function Layout({ children }: PropsWithChildren) {
 		</div>
 	);
 }
+
+function CartLayout({ ...props }: PropsWithChildren) {
+	const [cartCount, setCartCount] = useState(0);
+	const cartHandler = () => {
+		const data = getCart();
+		if (!(data instanceof Array)) {
+			localStorage.setItem("cart", JSON.stringify([]));
+			return;
+		}
+		setCartCount(data.length);
+	};
+
+	useEffect(() => {
+		const data = getCart();
+		if (data) setCartCount(data.length);
+
+		addEventListener("cartMutate", cartHandler);
+		return () => removeEventListener("cartMutate", cartHandler);
+	}, []);
+
+	const toCart = () => location.assign("/cart");
+
+	return (
+		<div className="toast" {...props}>
+			<div
+				className="btn indicator flex items-center justify-center bg-accent"
+				onClick={toCart}
+			>
+				<ShoppingCart className="m-2 text-accent-content" />
+				{cartCount}
+			</div>
+		</div>
+	);
+}
+
+const CartIsland = Island(CartLayout);

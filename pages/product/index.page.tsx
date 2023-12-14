@@ -1,8 +1,8 @@
-import type { PageContextBuiltInServer } from "vike/types";
 import Layout from "../layout";
-import { faker } from "@faker-js/faker";
-import { getProduct, getRandomProduct } from "#/components/product";
+import { getProduct } from "#/components/product";
+import type { PageContextBuiltInServer } from "vike/types";
 import type { Product } from "#/productType";
+import { Island } from "arkhi/client";
 
 export { Page };
 export const PrefetchSetting = { mode: "hover" };
@@ -48,9 +48,10 @@ function Page({
 							<button className=" btn btn-primary capitalize hover:scale-105">
 								buy directly
 							</button>
-							<button className=" btn btn-secondary capitalize hover:scale-105">
+							<AddCartIsland name={product?.name} />
+							{/* <button className="btn btn-secondary capitalize hover:scale-105">
 								add to cart
-							</button>
+							</button> */}
 						</div>
 					</div>
 				</div>
@@ -129,3 +130,32 @@ export function onBeforeRender(pageContext: PageContextBuiltInServer) {
 		},
 	};
 }
+
+function AddCart({ name, ...props }: { name: string | undefined }) {
+	const cartHandler = () => {
+		if (!name) return;
+		const oldData = localStorage.getItem("cart");
+		const newData: Array<string> =
+			typeof oldData === "string"
+				? (JSON.parse(oldData) as Array<string>)
+				: [];
+		if (!(newData instanceof Array)) {
+			localStorage.setItem("cart", JSON.stringify([newData]));
+			return;
+		}
+		newData.push(name);
+		localStorage.setItem("cart", JSON.stringify(newData));
+		dispatchEvent(new Event("cartMutate"));
+	};
+	return (
+		<button
+			{...props}
+			className="btn btn-secondary capitalize hover:scale-105"
+			onClick={cartHandler}
+		>
+			add to cart
+		</button>
+	);
+}
+
+const AddCartIsland = Island(AddCart);

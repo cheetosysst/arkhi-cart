@@ -16,7 +16,7 @@ const companies: Array<Company> = Array(100)
 		image: faker.image.urlPicsumPhotos({}),
 	}));
 
-const products: Array<Product> = Array(2000)
+const products: Array<Product> = Array(1000)
 	.fill(null)
 	.map(() => ({
 		name: faker.commerce.productName(),
