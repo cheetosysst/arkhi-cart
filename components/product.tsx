@@ -33,3 +33,8 @@ export const getCompanyByName = (name: string) => {
 	if (!name) return undefined;
 	return companies.find((item) => item.name === name);
 };
+
+export const getProductsByDepartment = (name: string) => {
+	if (!name) return undefined;
+	return products.filter((item) => item.department === name);
+};

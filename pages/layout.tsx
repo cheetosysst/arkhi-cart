@@ -67,7 +67,9 @@ export default function Layout({ children }: PropsWithChildren) {
 					{mockData.map((item, index) => (
 						<li key={`sidelink${index}`}>
 							<a
-								href="#"
+								href={`/department?name=${encodeURI(
+									item.title,
+								)}`}
 								className="btn btn-neutral flex justify-start gap-2"
 							>
 								{item.icon}
